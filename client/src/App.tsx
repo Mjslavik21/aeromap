@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import ProjectView from "@/pages/project-view";
+import LiveMap from "@/pages/live-map";
+import FlightPlanner from "@/pages/flight-planner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppLayout } from "@/components/app-layout";
 
@@ -16,6 +18,8 @@ function AppRouter() {
       <Switch>
         <Route path="/" component={Dashboard} />
         <Route path="/projects/:id" component={ProjectView} />
+        <Route path="/live-map" component={LiveMap} />
+        <Route path="/flight-planner" component={FlightPlanner} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

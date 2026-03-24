@@ -8,13 +8,15 @@ import {
   Sun,
   Moon,
   Map,
+  Navigation,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const navItems = [
   { href: "/", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/", icon: FolderOpen, label: "Projects" },
-  { href: "/", icon: Map, label: "Map View" },
+  { href: "/live-map", icon: Map, label: "Live Map" },
+  { href: "/flight-planner", icon: Navigation, label: "Flight Planner" },
 ];
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
