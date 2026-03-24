@@ -1,0 +1,39 @@
+version: "3.8"
+
+# NVIDIA GPU-optimized configuration
+# Usage: docker-compose up -d
+
+services:
+  nodeodm:
+    image: opendronemap/nodeodm:gpu
+    container_name: aeromap-nodeodm
+    ports:
+      - "3000:3000"
+    volumes:
+      - odm-data:/var/www/data
+    restart: unless-stopped
+    # GPU optimization: allow NodeODM to use maximum system resources
+    environment:
+      - NODE_ENV=production
+    # Increase shared memory for CUDA operations
+    shm_size: '2gb'
+    # NVIDIA GPU passthrough
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, utility]
+    # Increase ulimits for large file processing
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+volumes:
+  odm-data:
+    driver: local

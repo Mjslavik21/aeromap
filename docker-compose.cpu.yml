@@ -1,0 +1,17 @@
+version: "3.8"
+
+# Use this file if you don't have an NVIDIA GPU:
+# docker-compose -f docker-compose.cpu.yml up -d
+
+services:
+  nodeodm:
+    image: opendronemap/nodeodm
+    container_name: aeromap-nodeodm
+    ports:
+      - "3000:3000"
+    volumes:
+      - odm-data:/var/www/data
+    restart: unless-stopped
+
+volumes:
+  odm-data:
